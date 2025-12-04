@@ -1,0 +1,26 @@
+{
+  "name": "civic_tech_backend",
+  "version": "1.0.0",
+  "description": "Starter backend for FixIt Civic Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mongoose": "^7.5.0",
+    "dotenv": "^16.1.4",
+    "faker": "^5.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
