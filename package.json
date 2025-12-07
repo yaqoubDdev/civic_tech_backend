@@ -14,11 +14,14 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
-    "express": "^5.2.1",
-    "mongoose": "^7.5.0",
     "dotenv": "^16.1.4",
-    "faker": "^5.5.3"
+    "express": "^5.2.1",
+    "faker": "^5.5.3",
+    "mongoose": "^7.5.0",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

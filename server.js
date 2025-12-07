@@ -8,8 +8,21 @@ const reportsRouter = require('./routes/reports');
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/reports', reportsRouter);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('=== ERROR ===');
+  console.error('Message:', err.message);
+  console.error('Stack:', err.stack);
+  console.error('=============');
+  res.status(err.status || 500).json({
+    error: err.message || 'Internal server error',
+    details: process.env.NODE_ENV === 'development' ? err.stack : undefined
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/civic_tech';
