@@ -1,36 +1,97 @@
-# FixIt Civic Platform — Backend (starter)
+# Civic Tech Platform - Backend
 
-This is a minimal starter backend scaffold for the FixIt civic platform. It implements basic report storage and APIs, following the `Backend Guide.md` in the repository.
+This is the backend API for the FixIt Civic Platform, built with Node.js, Express, and MongoDB. It handles report submissions, data persistence, image uploads via Cloudinary, and serves data to the frontend dashboard.
 
-Quick steps
+## 🚀 Getting Started
 
-1. Copy `.env.example` to `.env` and edit `MONGO_URI` (or use local MongoDB).
-2. Install dependencies:
+### Prerequisites
 
-```bash
-npm install
-```
+- **Node.js** (v14 or higher)
+- **MongoDB** (Local instance or Atlas URI)
+- **Cloudinary Account** (for image uploads)
 
-3. Seed demo data (optional):
+### Installation
+
+1.  **Navigate to the backend directory:**
+    ```bash
+    cd civic_tech_backend
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment Variables:**
+    - Copy the example environment file:
+      ```bash
+      cp .env.example .env
+      ```
+    - Open `.env` and fill in your details:
+      ```env
+      PORT=5000
+      MONGO_URI=mongodb://localhost:27017/civic_tech
+      
+      # Cloudinary Credentials (Get these from your Cloudinary Dashboard)
+      CLOUDINARY_CLOUD_NAME=your_cloud_name
+      CLOUDINARY_API_KEY=your_api_key
+      CLOUDINARY_API_SECRET=your_api_secret
+      ```
+
+### Database Seeding
+
+To populate your database with initial test data (reports with various statuses, locations, and images):
 
 ```bash
 npm run seed
 ```
 
-4. Run the server in development:
+### Running the Server
 
-```bash
-npm run dev
-```
+- **Development Mode** (with auto-restart):
+  ```bash
+  npm run dev
+  ```
 
-API endpoints
+- **Production Mode**:
+  ```bash
+  npm start
+  ```
 
-- POST /api/reports — create a report
-- GET /api/reports — list reports (supports `?status=` and `?owner=`)
-- PATCH /api/reports/:id/upvote — increment votes and recalc priority
-- PATCH /api/reports/:id/status — update status
+The server will start on `http://localhost:5000` (or your specified PORT).
 
-Notes
+---
 
-- `seed.js` inserts 50 dummy reports clustered near a demo location. It uses `faker` for addresses.
-- The `utils` folder contains `calculatePriority` and `smartRouting` utilities mentioned in the guide.
+## 🛠️ API Endpoints
+
+### Reports
+
+| Method | Endpoint | Description | Body / Params |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/api/reports` | Get all reports | Query params: `status` (e.g., `?status=Open`) |
+| **POST** | `/api/reports` | Create a new report | Form Data: `title`, `description`, `category`, `type`, `lat`, `lng`, `image` (file) |
+| **PATCH** | `/api/reports/:id/upvote` | Upvote a report | None |
+| **PATCH** | `/api/reports/:id/status` | Update report status | JSON: `{ "status": "Resolved" }` |
+
+### Categories
+
+- **Water**: Leaks, outages, quality issues
+- **Roads**: Potholes, blockages, traffic lights
+- **Power**: Outages, exposed wires
+- **Waste**: Missed pickup, illegal dumping
+
+---
+
+## 📂 Project Structure
+
+- `server.js`: Entry point of the application.
+- `routes/`: API route definitions.
+- `models/`: Mongoose data models.
+- `config/`: Configuration files (Cloudinary, DB).
+- `middleware/`: Custom middleware (File upload).
+- `utils/`: Helper functions (Smart routing logic).
+- `seed.js`: Script to seed the database.
+
+## 🧪 Testing
+
+Currently, there are no automated tests. You can test the API using Postman or by running the frontend application.
