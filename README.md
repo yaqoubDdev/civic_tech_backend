@@ -2,6 +2,8 @@
 
 This is the backend API for the FixIt Civic Platform, built with Node.js, Express, and MongoDB. It handles report submissions, data persistence, image uploads via Cloudinary, and serves data to the frontend dashboard.
 
+**Frontend Repository:** [https://github.com/yaqoubDdev/civic_tech_frontend](https://github.com/yaqoubDdev/civic_tech_frontend)
+
 ## 🚀 Getting Started
 
 ### Prerequisites
